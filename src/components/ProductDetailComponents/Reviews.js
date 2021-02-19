@@ -20,21 +20,21 @@ const Review = () => {
     return (
             <div>
                 {reviewsList.map( (data, index) => (
-                    <div class="m-10 p-10 border border-gray-500">
-                        <div class="flex justify-between items-center">
-                            <div class="flex space-x-2 items-center">
-                                <h1 class="inline font-medium text-lg">{data.user_name}</h1>
-                                <div class="flex  text-skin_dark">
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
+                    <div className="m-10 p-10 border border-gray-500">
+                        <div className="flex justify-between items-center">
+                            <div className="flex space-x-2 items-center">
+                                <h1 className="inline font-medium text-lg">{data.user_name}</h1>
+                                <div className="flex  text-skin_dark">
+                                    <i className='bx bxs-star'></i>
+                                    <i className='bx bxs-star'></i>
+                                    <i className='bx bxs-star'></i>
+                                    <i className='bx bxs-star'></i>
+                                    <i className='bx bxs-star'></i>
                                 </div>
                             </div>
-                            <p class="text-skin_dark">{data.date}</p>
+                            <p className="text-skin_dark">{data.date}</p>
                         </div>
-                        <p class="mt-5">{data.description}</p>
+                        <p className="mt-5">{data.description}</p>
                     </div>
                 ) )}
             </div>

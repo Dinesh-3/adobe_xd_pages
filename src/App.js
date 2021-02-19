@@ -6,6 +6,9 @@ import Footer from './components/Footer'
 import Home from "./components/Home"
 import ProductDetail from './components/ProductDetail'
 import Notification from './components/Notification'
+import AllProducts from './components/AllProducts'
+import ProductViews from './components/ProductDetailComponents/change'
+
 const App = () => (
     <Router>
     <div>
@@ -14,10 +17,10 @@ const App = () => (
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/detail/1">Product Detail</Link>
         </li>
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/all-products">All Products</Link>
         </li>
       </ul>
 
@@ -34,11 +37,16 @@ const App = () => (
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/about">
+        <Route exact path="/detail/*">
           <ProductDetail />
         </Route>
-        <Route path="/dashboard">
+        <Route path="/all-products">
+          <AllProducts />
           <Notification />
+          <ProductViews />
+        </Route>
+        <Route exact path="/detail/1">
+          <ProductDetail />
         </Route>
       </Switch>
     </div>

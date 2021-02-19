@@ -60,25 +60,25 @@ const Footer = () => {
             </div>
             <ul className="flex justify-center items-center space-x-2">
                 <li className="p-2 h-8 w-8 bg-white rounded-full flex justify-center items-center ">
-                    <img className=" " src="./assets/images/_x30_1._Facebook.svg" alt="Facebook" srcset="" />
+                    <img className=" " src="/assets/images/_x30_1._Facebook.svg" alt="Facebook" />
                 </li>
                 <li className="p-2 h-8 w-8 bg-white rounded-full flex justify-center items-center">
-                    <img className=" " src="./assets/images/_x30_2.YouTube_1_.svg" alt="Youtube" srcset="" />
+                    <img className=" " src="/assets/images/_x30_2.YouTube_1_.svg" alt="Youtube" />
                 </li>
                 <li className="p-2 h-8 w-8 bg-white rounded-full flex justify-center items-center">
-                    <img className=" " src="./assets/images/_x31_0.Linkedin.svg" alt="Linkedin" srcset="" />
+                    <img className=" " src="/assets/images/_x31_0.Linkedin.svg" alt="Linkedin" />
                 </li>
                 <li className="p-2 h-8 w-8 bg-white rounded-full flex justify-center items-center">
-                    <img className=" " src="./assets/images/google-plus.svg" alt="GooglePlus" srcset="" />
+                    <img className=" " src="/assets/images/google-plus.svg" alt="GooglePlus" />
                 </li>
                 <li className="p-2 h-8 w-8 bg-white rounded-full flex justify-center items-center">
-                    <img className=" " src="./assets/images/instagram.svg" alt="Instagram" srcset="" />
+                    <img className=" " src="/assets/images/instagram.svg" alt="Instagram" />
                 </li>
                 <li className="p-2 h-8 w-8 bg-white rounded-full flex justify-center items-center">
-                    <img className=" " src="./assets/images/pinterest.svg" alt="Pinterest" srcset="" />
+                    <img className=" " src="/assets/images/pinterest.svg" alt="Pinterest" />
                 </li>
                 <li className="p-2 h-8 w-8 bg-white rounded-full flex justify-center items-center">
-                    <img className=" " src="./assets/images/twitter.svg" alt="Twitter" srcset="" />
+                    <img className=" " src="/assets/images/twitter.svg" alt="Twitter" />
                 </li>
             </ul>
         </div>

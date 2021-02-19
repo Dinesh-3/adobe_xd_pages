@@ -1,58 +1,62 @@
+import { useLocation } from "react-router-dom"
+import { allProductsList } from '../../services/productDataList'
+import {useState} from 'react'
+
 const ProductView = () => {
-    const productData = {
-        "img_urls": [
-            "./assets/images/rose_bucket.jpeg",
-        ],
-        "product_title": "Pretty Pink Rose Basket Made from Bengal Bamboo",
-        "actual_price": 4000,
-        "current_price": 3000,
-        "colors": ["red", "orange", "blue"],
-        "sizes": ["small", "large"],
-        "quantity": [500],
-        "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis, perferendis eveniet? Nobis accusantium dolor, quam magnam excepturi quasi amet quae magni, optio odio ad maxime necessitatibus itaque",
-        "stock": 0
-   }
+    
+    const pathname = useLocation().pathname.split("/")[2]
+    const productData = getProductData()
+    function getProductData() {
+        console.log(pathname);
+        let ans =  allProductsList.filter((data, index) => data.product_id == pathname)
+        return ans[0]
+    }
     let Specifications = ""   
+
+    const [imageUrl, setImageUrl] = useState(productData.slider_image[0])
+    const changeImage = (src, id) => {
+        setImageUrl({img:src,id:id})
+    }
     if(productData.stock == 0){
         Specifications = <h1 className="text-xl text-red-600">OUT OF STOCK</h1>
     }else {
-        Specifications = <div class="flex flex-col space-y-4">
-                            <div class="grid grid-cols-2">
-                                <h2 class="font-bold text-lg">Color</h2>
-                                <div class="flex space-x-4">
+        Specifications = <div className="flex flex-col space-y-4">
+                            <div className="grid grid-cols-2">
+                                <h2 className="font-bold text-lg">Color</h2>
+                                <div className="flex space-x-4">
                                     {
                                         productData.colors.map((data, index) => {
                                             if(index == 0){
-                                                return (<button class="px-6 py-2 bg-skin_thin rounded-lg uppercase">{data}</button>)
+                                                return (<button className="px-6 py-2 bg-skin_thin rounded-lg uppercase" key={index}>{data}</button>)
                                             }else {
-                                                return (<button class="px-6 py-2 border border-gray-500 rounded-lg uppercase">{data}</button>)
+                                                return (<button className="px-6 py-2 border border-gray-500 rounded-lg uppercase" key={index}>{data}</button>)
                                             }
                                         })
                                     }
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2">
-                                <h2 class="font-bold text-lg">Size</h2>
-                                <div class="flex space-x-4">
+                            <div className="grid grid-cols-2">
+                                <h2 className="font-bold text-lg">Size</h2>
+                                <div className="flex space-x-4">
                                     {
                                         productData.sizes.map( (data, index) => {
                                             if( index ==0 ) {
-                                                return (<button class="px-6 py-2 bg-skin_thin rounded-lg uppercase">{data}</button>)
+                                                return (<button className="px-6 py-2 bg-skin_thin rounded-lg uppercase" key={index}>{data}</button>)
                                             }else {
-                                                return (<button class="px-6 py-2 border border-gray-500 rounded-lg uppercase">{data}</button>)
+                                                return (<button className="px-6 py-2 border border-gray-500 rounded-lg uppercase" key={index}>{data}</button>)
                                             }
                                         } )
                                     }
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2">
-                                <h2 class="font-bold text-lg">Quantity</h2>
-                                <div class="flex space-x-4 self-start">
+                            <div className="grid grid-cols-2">
+                                <h2 className="font-bold text-lg">Quantity</h2>
+                                <div className="flex space-x-4 self-start">
                                     <button
-                                        class="px-6 py-2 border border-gray-500 rounded-lg flex justify-center items-center space-x-2"><span
-                                            class="font-medium text-2xl text-skin_dark">
+                                        className="px-6 py-2 border border-gray-500 rounded-lg flex justify-center items-center space-x-2"><span
+                                            className="font-medium text-2xl text-skin_dark">
                                             {"<"} </span>
-                                            <h1>{productData.quantity[0]}</h1> <span class="font-medium text-2xl text-skin_dark"> {">"} </span>
+                                            <h1>{productData.quantity[0]}</h1> <span className="font-medium text-2xl text-skin_dark"> {">"} </span>
                                     </button>
                                 </div>
                             </div>
@@ -61,44 +65,63 @@ const ProductView = () => {
     }
 
     return (
-        <div class="grid grid-cols-2 gap-5">
-            <div className="relative">
-                <img class="p-5" src={productData.img_urls} alt="" srcset="" />
-                {productData.stock == 0 && 
-                    <div className="w-full h-full bg-white_o_3 absolute top-0 flex justify-center items-center">
-                        <button className="py-5 px-12 bg-footer_gray text-skin_dark">OUT OF STOCK</button>
-                    </div>
-                }
-            </div>
-            <div class="p-5 flex flex-col space-y-5">
-                <h1 class="font-bold text-xl">{productData.product_title}</h1>
-                <div class="flex space-x-1 justify-start items-center">
-                    <div class="flex space-x-1 text-skin_dark">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                    </div>
-                    <h1 class="text-gray-300">|</h1>
-                    <a class="underline text-skin_dark" href="">12 Reviews</a>
-                </div>
-                <div class="flex space-x-2">
-                    <h1 class="font-bold text-lg"> &#8377; {productData.current_price}</h1>
-                    <h1 class="font-normal text-lg text-gray-400 line-through"> &#8377; {productData.actual_price}</h1>
-                </div>
-                {Specifications}
-                <div>
-                    <p class="inline">{productData.description}</p>
-                    <span><a class="underline text-skin_dark" href="">Read More</a></span>
-                    <span class="text-skin_dark"> {">"}</span>
-                </div>
-                {productData.stock > 0 
-                    &&  <div class="flex space-x-4">
-                            <button class="px-6 py-2 border border-gray-500 rounded-lg">ADD TO CART</button>
-                            <button class="px-6 py-2 bg-skin_dark rounded-lg">BUY NOW</button>
+        <div>
+            <div className="flex jusitfy-between items-start py-5">
+                <div className="relative h-96 w-2/4">
+                    <img  className="object-cover h-full w-full " src={imageUrl.img} alt={productData.product_title} />
+                    {productData.stock == 0 && 
+                        <div className="w-full h-full bg-white_o_3 absolute top-0 flex justify-center items-center">
+                            <button className="py-5 px-12 bg-footer_gray text-skin_dark">OUT OF STOCK</button>
                         </div>
-                }
+                    }
+                </div>
+                <div className="p-5 flex flex-col space-y-5 w-3/4">
+                    <h1 className="font-bold text-xl">{productData.product_title}</h1>
+                    <div className="flex space-x-1 justify-start items-center">
+                        <div className="flex space-x-1 text-skin_dark">
+                            <i className='bx bxs-star'></i>
+                            <i className='bx bxs-star'></i>
+                            <i className='bx bxs-star'></i>
+                            <i className='bx bxs-star'></i>
+                            <i className='bx bxs-star'></i>
+                        </div>
+                        <h1 className="text-gray-300">|</h1>
+                        <a className="underline text-skin_dark" href="">12 Reviews</a>
+                    </div>
+                    <div className="flex space-x-2">
+                        <h1 className="font-bold text-lg"> &#8377; {productData.current_price}</h1>
+                        <h1 className="font-normal text-lg text-gray-400 line-through"> &#8377; {productData.actual_price}</h1>
+                    </div>
+                    {Specifications}
+                    <div>
+                        <p className="inline">{productData.description}</p>
+                        <span><a className="underline text-skin_dark" href="">Read More</a></span>
+                        <span className="text-skin_dark"> {">"}</span>
+                    </div>
+                    {productData.stock > 0 
+                        &&  <div className="flex space-x-4">
+                                <button className="px-6 py-2 border border-gray-500 rounded-lg">ADD TO CART</button>
+                                <button className="px-6 py-2 bg-skin_dark rounded-lg">BUY NOW</button>
+                            </div>
+                    }
+                </div>
+            </div>
+            <div className="flex justify-start items-start relative">
+                <div className="p-2 h-8 w-8 bg-skin_dark text-2xl rounded-full flex justify-center items-center cursor-pointer text-white absolute top-1/3 -left-4">
+                        <i className='bx bxs-chevron-left' ></i>
+                </div>
+                <div className="flex space-x-2 ">
+                    {productData.slider_image.map((data) => {
+                        return <img
+                        key={data.id}
+                        className={`w-16 h-16 object-cover cursor-pointer ${imageUrl.id === data.id ? "opacity-1" : "opacity-40"}`} src={data.img}
+                        alt=""
+                        onClick={()=>changeImage(data.img, data.id)} />
+                    })}
+                </div>
+                <div className="p-2 h-8 w-8 bg-skin_dark text-2xl rounded-full flex justify-center items-center cursor-pointer text-white absolute top-1/3 -right-4">
+                        <i className='bx bxs-chevron-right' ></i>
+                </div>
             </div>
         </div>
     )

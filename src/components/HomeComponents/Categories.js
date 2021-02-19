@@ -19,15 +19,15 @@ const Categories = () => {
         }
     ]
     return (
-        <div class="flex flex-col text-center">
-            <h1 class="font-bold text-xl">Categories</h1>
-            <div class="m-auto w-4/5 grid grid-cols-2 gap-5">
+        <div className="flex flex-col text-center">
+            <h1 className="font-bold text-xl">Categories</h1>
+            <div className="m-auto w-4/5 grid grid-cols-2 gap-5">
                 {
-                    categoriesData.map((data) => (<div class="relative">
-                    <div class="w-full">
-                        <img src={data.img_url} alt={data.title} srcset="" />
+                    categoriesData.map((data) => (<div className="relative">
+                    <div className="w-full">
+                        <img src={data.img_url} alt={data.title} srcSet="" />
                     </div>
-                    <div class="bg-gray_o_5 blur w-full py-2 text-center text-white text-lg bottom-0 absolute">
+                    <div className="bg-gray_o_5 blur w-full py-2 text-center text-white text-lg bottom-0 absolute">
                         {data.title}
                     </div>
                 </div>))
