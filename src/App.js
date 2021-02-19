@@ -7,25 +7,10 @@ import Home from "./components/Home"
 import ProductDetail from './components/ProductDetail'
 import Notification from './components/Notification'
 import AllProducts from './components/AllProducts'
-import ProductViews from './components/ProductDetailComponents/change'
-
+import Header from './components/Header'
 const App = () => (
     <Router>
-    <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/detail/1">Product Detail</Link>
-        </li>
-        <li>
-          <Link to="/all-products">All Products</Link>
-        </li>
-      </ul>
-
-      <hr />
-
+      <Header />
       {/*
         A <Switch> looks through all its children <Route>
         elements and renders the first one whose path
@@ -41,15 +26,13 @@ const App = () => (
           <ProductDetail />
         </Route>
         <Route path="/all-products">
-          <AllProducts />
           <Notification />
-          <ProductViews />
+          <AllProducts />
         </Route>
         <Route exact path="/detail/1">
           <ProductDetail />
         </Route>
       </Switch>
-    </div>
     <Footer />
   </Router>
 )

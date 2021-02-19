@@ -13,7 +13,7 @@ module.exports = {
             white_dark: "#F2F2F2",
             gray_light: "#5D5D5D",
             white: "#FFFFFF",
-            gray_o_5: "rgba(0, 0, 0, 0.1)",
+            gray_o_5: "rgba(0, 0, 0, 0.3)",
             white_o_3: "rgba(250, 250, 250, 0.5)"
         }
     },

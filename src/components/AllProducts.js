@@ -1,14 +1,34 @@
 import { useLocation } from "react-router-dom";
 import {allProductsList} from '../services/productDataList'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+
 const AllProducts = () => {
 
+    const [productList, setProductList] = useState(allProductsList)
+    const handleFilter = (e) => {
+        const input = e.target.value.toLowerCase()
+        const filterData = []
+        allProductsList.forEach(function(item){
+            if(item.product_title.toLowerCase().indexOf(input) != -1){
+              filterData.push(item)
+            }
+          })
+        setProductList(filterData)  
+    }
     const pathname = useLocation().pathname
     return (
         <div className="w-3/4 mx-auto"> 
             <div className="flex justify-between my-5">
                 <button className="px-6 py-2 border border-gray-500 rounded-lg">Filters</button>
-                
+                <input
+                onKeyUp={(e) => handleFilter(e)}
+                type="text"
+                name="product_search"
+                id="product_search"
+                placeholder="Search Products"
+                class="outline-none h-9 px-5 bg-skin_thin rounded-lg"
+              />
                 <div>
                     <label for="sortBy">Sort By:</label>
                     <select className="px-2 py-2 border border-gray-500 rounded-lg outline-none" name="sortBy" id="sortBy">
@@ -21,10 +41,17 @@ const AllProducts = () => {
             </div>
             <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
                 {
-                    allProductsList.map(productData => (
+                    productList.map(productData => (
                         <Link to={ "/detail/" + productData.product_id }>
                             <div className="flex flex-col space-y-2" key={productData.product_id}>
-                                <img src={productData.img_urls[0]} alt={productData.product_title} />
+                                <div className="relative">
+                                    <img className="w-60 h-60 object-cover" src={productData.slider_image[0].img} alt={productData.product_title} />
+                                    {   productData.stock == 0 && 
+                                        <div className="w-full h-full bg-white_o_3 absolute top-0 flex justify-center items-center">
+                                            <button className="py-4 px-8 bg-footer_gray text-skin_dark">OUT OF STOCK</button>
+                                        </div>
+                                    }
+                                </div>
                                 <div className="px-5 py-2 flex flex-col space-y-2 skin-skin_light">
                                     <h3>{productData.product_title}</h3>
                                     <div className="flex space-x-2">

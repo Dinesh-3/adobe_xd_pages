@@ -12,7 +12,7 @@ const ProductDetail = () => {
             <ProductView />
             {/*
             <!-- Like it --> */}
-            <div className="flex border border-gray-500 py-4 justify-center items-center space-x-4">
+            <div className="flex border border-gray-500 py-4 justify-center items-center space-x-4 my-5">
                 <h1>Like it? Share it!</h1>
                 <div className="flex space-x-3">
                     <img src="/assets/images/facebook_1.svg" alt="" srcSet="" />

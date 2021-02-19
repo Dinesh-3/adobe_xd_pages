@@ -7,7 +7,6 @@ const ProductView = () => {
     const pathname = useLocation().pathname.split("/")[2]
     const productData = getProductData()
     function getProductData() {
-        console.log(pathname);
         let ans =  allProductsList.filter((data, index) => data.product_id == pathname)
         return ans[0]
     }
@@ -16,6 +15,18 @@ const ProductView = () => {
     const [imageUrl, setImageUrl] = useState(productData.slider_image[0])
     const changeImage = (src, id) => {
         setImageUrl({img:src,id:id})
+    }
+
+    const slideChange = (index) => {
+        const currentIndex = imageUrl.id + index
+        if( currentIndex < 0 ) {
+            setImageUrl(productData.slider_image[productData.slider_image.length - 1])
+        }else if (currentIndex > productData.slider_image.length-1) {
+            setImageUrl(productData.slider_image[0])
+        }else {
+            const currentImage = productData.slider_image[currentIndex]
+            setImageUrl(currentImage)
+        }
     }
     if(productData.stock == 0){
         Specifications = <h1 className="text-xl text-red-600">OUT OF STOCK</h1>
@@ -67,7 +78,7 @@ const ProductView = () => {
     return (
         <div>
             <div className="flex jusitfy-between items-start py-5">
-                <div className="relative h-96 w-2/4">
+                <div className="relative h-96 w-2/4 self-center">
                     <img  className="object-cover h-full w-full " src={imageUrl.img} alt={productData.product_title} />
                     {productData.stock == 0 && 
                         <div className="w-full h-full bg-white_o_3 absolute top-0 flex justify-center items-center">
@@ -106,21 +117,23 @@ const ProductView = () => {
                     }
                 </div>
             </div>
-            <div className="flex justify-start items-start relative">
-                <div className="p-2 h-8 w-8 bg-skin_dark text-2xl rounded-full flex justify-center items-center cursor-pointer text-white absolute top-1/3 -left-4">
-                        <i className='bx bxs-chevron-left' ></i>
-                </div>
-                <div className="flex space-x-2 ">
-                    {productData.slider_image.map((data) => {
-                        return <img
-                        key={data.id}
-                        className={`w-16 h-16 object-cover cursor-pointer ${imageUrl.id === data.id ? "opacity-1" : "opacity-40"}`} src={data.img}
-                        alt=""
-                        onClick={()=>changeImage(data.img, data.id)} />
-                    })}
-                </div>
-                <div className="p-2 h-8 w-8 bg-skin_dark text-2xl rounded-full flex justify-center items-center cursor-pointer text-white absolute top-1/3 -right-4">
-                        <i className='bx bxs-chevron-right' ></i>
+            <div className="w-1/3">
+                <div className="relative">
+                    <div className="z-10 p-2 h-8 w-8 bg-skin_dark text-2xl rounded-full flex justify-center items-center cursor-pointer text-white absolute top-1/3 -left-4" onClick={()=>slideChange(-1)}>
+                            <i className='bx bxs-chevron-left' ></i>
+                    </div>
+                    <div className="flex space-x-2 inline-block ">
+                        {productData.slider_image.map((data) => {
+                            return <img
+                            key={data.id}
+                            className={`w-16 h-16 object-cover cursor-pointer ${imageUrl.id === data.id ? "opacity-1" : "opacity-40"}`} src={data.img}
+                            alt=""
+                            onClick={()=>changeImage(data.img, data.id)} />
+                        })}
+                    </div>
+                    <div className="z-10 p-2 h-8 w-8 bg-skin_dark text-2xl rounded-full flex justify-center items-center cursor-pointer text-white absolute top-1/3 -right-4" onClick={()=>slideChange(1)}>
+                            <i className='bx bxs-chevron-right' ></i>
+                    </div>
                 </div>
             </div>
         </div>
