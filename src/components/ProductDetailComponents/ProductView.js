@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom"
 import { allProductsList } from '../../services/productDataList'
 import {useState} from 'react'
-
+import {Link} from 'react-router-dom'
 const ProductView = () => {
     
     const pathname = useLocation().pathname.split("/")[2]
@@ -77,6 +77,10 @@ const ProductView = () => {
 
     return (
         <div>
+            <div className="flex space-x-2">
+                <span className="inline-block"><Link className="hover:underline hover:text-skin_dark inline-block" to="/">Home </Link> / <Link className="hover:underline hover:text-skin_dark inline-block" to="/all-products"> Flowers </Link> / </span>
+                <span className="inline-block"><Link className="underline text-skin_dark inline-block" to={useLocation().pathname}>{productData.product_title}</Link></span>
+            </div>
             <div className="flex flex-col md:flex-row jusitfy-between items-start py-5">
                 <div className="relative h-96 w-2/4 self-center">
                     <img  className="object-cover h-full w-full " src={imageUrl.img} alt={productData.product_title} />

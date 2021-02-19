@@ -5,10 +5,6 @@ import {Link} from "react-router-dom"
 const ProductDetail = () => {
     return (
         <div className="w-4/5 mx-auto my-5">
-            <div className="flex space-x-2">
-                <span className="inline-block"><Link className="hover:underline hover:text-skin_dark inline-block" to="/">Home </Link> / <Link className="hover:underline hover:text-skin_dark inline-block" to="/all-products"> Flowers </Link> / </span>
-                <span className="inline-block"><a className="underline text-skin_dark inline-block" href="">Pretty Pink Rose Basket Made from Bengal Bamboo</a></span>
-            </div>
             <ProductView />
             {/*
             <!-- Like it --> */}
