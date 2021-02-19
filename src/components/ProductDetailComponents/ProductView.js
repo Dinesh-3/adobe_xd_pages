@@ -77,7 +77,7 @@ const ProductView = () => {
 
     return (
         <div>
-            <div className="flex jusitfy-between items-start py-5">
+            <div className="flex flex-col md:flex-row jusitfy-between items-start py-5">
                 <div className="relative h-96 w-2/4 self-center">
                     <img  className="object-cover h-full w-full " src={imageUrl.img} alt={productData.product_title} />
                     {productData.stock == 0 && 
