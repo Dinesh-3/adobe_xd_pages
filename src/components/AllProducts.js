@@ -6,6 +6,7 @@ import { useState } from 'react'
 const AllProducts = () => {
 
     const [productList, setProductList] = useState(allProductsList)
+    const [inputValue, setInputValue] = useState("")
     const handleFilter = (e) => {
         const input = e.target.value.toLowerCase()
         const filterData = []
@@ -14,6 +15,7 @@ const AllProducts = () => {
               filterData.push(item)
             }
           })
+        setInputValue(input)  
         setProductList(filterData)  
     }
     const pathname = useLocation().pathname
@@ -38,6 +40,9 @@ const AllProducts = () => {
                         <option value="colors">Colors</option>
                     </select>
                 </div>
+            </div>
+            <div className="text-center my-5">
+                <h1>Search Results for "<span className="text-skin_dark font-bold">{`${inputValue}`}</span>"</h1>
             </div>
             <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
                 {
