@@ -15,6 +15,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "react": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"

@@ -130,7 +130,7 @@ const ProductView = () => {
                         {productData.slider_image.map((data) => {
                             return <img
                             key={data.id}
-                            className={`w-16 h-16 object-cover cursor-pointer ${imageUrl.id === data.id ? "opacity-1" : "opacity-40"}`} src={data.img}
+                            className={`w-16 h-16 object-cover cursor-pointer ${imageUrl.id === data.id ? "opacity-1" : "opacity-40"} hover:opacity-1`} src={data.img}
                             alt=""
                             onClick={()=>changeImage(data.img, data.id)} />
                         })}
